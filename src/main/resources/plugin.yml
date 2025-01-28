@@ -1,0 +1,4 @@
+name: WoodsVill
+version: '1.0-SNAPSHOT'
+main: com.github.io.marobim815.woodsVill.WoodsVill
+api-version: '1.21'
