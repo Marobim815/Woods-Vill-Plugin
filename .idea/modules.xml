@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/WoodsVill.main.iml" filepath="$PROJECT_DIR$/.idea/modules/WoodsVill.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WoodsVill.test.iml" filepath="$PROJECT_DIR$/.idea/modules/WoodsVill.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.github.io.marobim815.WoodsVill.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.github.io.marobim815.WoodsVill.main.iml" />
     </modules>
   </component>
 </project>

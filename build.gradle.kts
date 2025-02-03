@@ -19,6 +19,8 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("net.kyori:adventure-api:4.14.0")
+    implementation("net.kyori:adventure-text-minimessage:4.14.0")
 }
 
 val targetJavaVersion = 21

@@ -7,15 +7,26 @@ object VillageManager {
     val villages = mutableListOf<Village>()
 
     fun addVillage(leader: Player, villageName: String): Boolean {
-        // 중복 검사
+
         if (villages.any { it.leader == leader || it.villageName == villageName }) return false
 
         villages.add(Village(leader = leader, villageName = villageName))
         return true
     }
 
+    fun deleteVillage(village: Village?) {
+        if (village == null) return
+        if (!villages.contains(village)) return
+        villages.remove(village)
+    }
+
+
+    fun combineVillage(village1: Village?, village2: Village?) {
+
+    }
+
     fun isPlayerInVillage(player: Player): Boolean =
-        getVillageByPlayer(player) != null  // 중복 로직 제거
+        getVillageByPlayer(player) != null
 
     fun getVillageByLeader(leader: Player): Village? =
         villages.find { it.leader == leader }
@@ -26,8 +37,10 @@ object VillageManager {
     fun isLeader(player: Player): Boolean =
         villages.any { it.leader == player }
 
-    fun addVillageLocation(leader: Player, location: Location) {
+    fun addVillageLocation(leader: Player, location: Location): Boolean {
+        if (!isLeader(leader)) return false
         val village = getVillageByLeader(leader)
         village?.coreLocation?.add(location)
+        return true
     }
 }

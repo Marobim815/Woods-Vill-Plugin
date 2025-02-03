@@ -1,14 +1,15 @@
 package com.github.io.marobim815.woodsVill.core
 
 import com.github.io.marobim815.woodsVill.village.VillageManager
+import net.kyori.adventure.text.Component
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.entity.EntityType
+import org.bukkit.entity.BlockDisplay
 import org.bukkit.entity.Interaction
 import org.bukkit.entity.Player
 
 object CoreManager {
-    fun upgradeCoreBlock(player: Player): Material? {
+    fun setCoreBlock(player: Player): Material? {
         val coreLevel = VillageManager.getVillageByPlayer(player)?.numberOfCoreBreak
         return when (coreLevel) {
             0 -> Material.DIAMOND_BLOCK
@@ -19,15 +20,19 @@ object CoreManager {
     }
 
     fun spawnCoreEntity(player: Player, location: Location) {
-        val world = location.world ?: return  // 월드가 null이면 종료
+        val world = location.world ?: return
         if (!VillageManager.isPlayerInVillage(player) && !VillageManager.isLeader(player)) return
-        val interaction = world.spawnEntity(location, EntityType.INTERACTION) as Interaction
-        val playerVillage = VillageManager.getVillageByPlayer(player)
-        // 엔티티 커스터마이징
-        interaction.isInvulnerable = true  // 코어 엔티티 무적 상태
-        interaction.customName = "${playerVillage?.villageName}마을의 심장"  // 엔티티 이름 설정
-        interaction.isCustomNameVisible = true  // 이름이 보이도록 설정
+        val playerVillage = VillageManager.getVillageByPlayer(player) ?: return
+        val coreBlock = setCoreBlock(player) ?: return
 
+        world.spawn(location, Interaction::class.java) {
+            it.customName(Component.text("${playerVillage.villageName}마을의 심장"))
+            it.isCustomNameVisible = true
+        }
+
+        world.spawn(location, BlockDisplay::class.java) {
+            it.block = coreBlock.createBlockData()
+        }
     }
 
 }

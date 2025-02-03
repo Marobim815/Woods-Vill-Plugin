@@ -11,4 +11,9 @@
       </configuration>
     </facet>
   </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:2.1.20-Beta1" level="project" />
+  </component>
 </module>
